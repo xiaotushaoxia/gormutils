@@ -113,5 +113,6 @@ func isLikeOpr(s string) bool {
 }
 
 func isInOpr(s string) bool {
-	return strings.ToUpper(s) == "IN"
+	upper := strings.ToUpper(s)
+	return upper == "IN" || upper == "NOT IN"
 }
