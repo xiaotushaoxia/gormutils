@@ -139,6 +139,8 @@ func TestNewMultiTx(t *testing.T) {
 
 ## WithCondition
 用结构体构建gorm的查询条件。减少查询接口的工作量
+### 更新记录
+1. 20230724 考虑到有些字段在很多查询中共用。新增了嵌入结构的支持
 
 **有人有更好的办法 谢谢分享**
 ```go
@@ -153,11 +155,26 @@ import (
 )
 
 type areaQueryBody struct {
-	Name  string `cond:"colum:name;opr:like;pattern:%%?%%"`
-	ID    []int  `cond:"colum:id;opr:in"`
+	nameIDQueryBody `cond:"embedded"`
+	//Name  string `cond:"colum:name;opr:like;pattern:%%?%%"`
+	//ID    []int  `cond:"colum:id;opr:in"`
 	Type  string `cond:"colum:type;opr:in;split:int;sep:,"`
 	Start string `cond:"colum:created_at;opr:>"`
 	Desc  string `cond:"colum:desc;opr:in"` // split默认值string,sep默认值,
+}
+
+type locationQueryBody struct {
+	nameIDQueryBody `cond:"embedded"`
+	//Name  string `cond:"colum:name;opr:like;pattern:%%?%%"`
+	//ID    []int  `cond:"colum:id;opr:in"`
+	Type  string `cond:"colum:type;opr:in;split:int;sep:,"`
+	Start string `cond:"colum:created_at;opr:>"`
+	Desc  string `cond:"colum:desc;opr:in"` // split默认值string,sep默认值,
+}
+
+type nameIDQueryBody struct {
+	Name string `cond:"colum:name;opr:like;pattern:%%?%%"`
+	ID   []int  `cond:"colum:id;opr:in"`
 }
 
 func TestWithConditionUsage(t *testing.T) {

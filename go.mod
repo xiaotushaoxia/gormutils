@@ -3,7 +3,7 @@ module github.com/xiaotushaoxia/gormutils
 go 1.20
 
 require (
-	github.com/xiaotushaoxia/kvtag v0.0.0-20230707150233-866cc83dddbb
+	github.com/xiaotushaoxia/kvtag v0.0.0-20230724060454-105fe283a74f
 	gorm.io/driver/mysql v1.5.1
 	gorm.io/gorm v1.25.2
 )

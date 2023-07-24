@@ -9,11 +9,26 @@ import (
 )
 
 type areaQueryBody struct {
-	Name  string `cond:"colum:name;opr:like;pattern:%%?%%"`
-	ID    []int  `cond:"colum:id;opr:in"`
+	nameIDQueryBody `cond:"embedded"`
+	//Name  string `cond:"colum:name;opr:like;pattern:%%?%%"`
+	//ID    []int  `cond:"colum:id;opr:in"`
 	Type  string `cond:"colum:type;opr:in;split:int;sep:,"`
 	Start string `cond:"colum:created_at;opr:>"`
 	Desc  string `cond:"colum:desc;opr:in"` // split默认值string,sep默认值,
+}
+
+type locationQueryBody struct {
+	nameIDQueryBody `cond:"embedded"`
+	//Name  string `cond:"colum:name;opr:like;pattern:%%?%%"`
+	//ID    []int  `cond:"colum:id;opr:in"`
+	Type  string `cond:"colum:type;opr:in;split:int;sep:,"`
+	Start string `cond:"colum:created_at;opr:>"`
+	Desc  string `cond:"colum:desc;opr:in"` // split默认值string,sep默认值,
+}
+
+type nameIDQueryBody struct {
+	Name string `cond:"colum:name;opr:like;pattern:%%?%%"`
+	ID   []int  `cond:"colum:id;opr:in"`
 }
 
 func TestWithConditionUsage(t *testing.T) {
@@ -22,14 +37,16 @@ func TestWithConditionUsage(t *testing.T) {
 
 func withConditionUsage() {
 	aa := areaQueryBody{
-		Name:  "区",
-		ID:    []int{1, 2, 3},
+		nameIDQueryBody: nameIDQueryBody{
+			Name: "区",
+			ID:   []int{1, 2, 3},
+		},
 		Start: "2023-05-08 11:03:23",
 		Type:  "1,3,4",
 		Desc:  "缓存区1,缓存区2",
 	}
 	// SELECT * FROM `area`
-	// WHERE `name` like '%%区%%' AND `id` in (1,2,3) AND `type` in (1,3,4) AND `created_at` > '2023-05-08 11:03:23' AND `desc` in ('缓存区1','缓存区2')
+	// WHERE `type` in (1,3,4) AND `created_at` > '2023-05-08 11:03:23' AND `desc` in ('缓存区1','缓存区2') AND `name` like '%%区%%' AND `id` in (1,2,3)
 
 	db := getDB().Debug()
 

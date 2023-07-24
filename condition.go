@@ -43,20 +43,14 @@ func WithCondition(cond any) func(*gorm.DB) *gorm.DB {
 	return func(db *gorm.DB) *gorm.DB {
 		tagInfo := kvtag.ParserTag(cond, queryConditionTagName, queryConditionTagSep)
 		v := reflect.Indirect(reflect.ValueOf(cond))
-		// 遍历结构体
-		for i := 0; i < v.NumField(); i++ {
-			// 忽略掉没有tag的字段和零值字段
-			ft, hasFieldTag := tagInfo.GetFieldTagByIndex(i)
-			if !hasFieldTag {
-				continue
-			}
-			fv := v.Field(i)
-			if fv.IsZero() {
-				continue
-			}
 
-			arg := fv.Interface()
-			st := ft.TagSetting
+		for _, tag := range tagInfo.FieldTags() {
+			field := v.FieldByName(tag.FieldName)
+			if !field.IsValid() || field.IsZero() {
+				continue
+			}
+			arg := field.Interface()
+			st := tag.TagSetting
 			if isInOpr(st[queryConditionOpr]) {
 				if argS, isStr := arg.(string); isStr {
 					arg = trySplitInString(argS, st[queryConditionSplit], st[queryConditionSep])
@@ -79,6 +73,7 @@ func WithCondition(cond any) func(*gorm.DB) *gorm.DB {
 }
 
 // trySplitInString 尝试把 1,2,3 分割成 [1,2,3], 看情况返回[]string或者[]int
+// 默认分割成字符串，默认用,分割
 func trySplitInString(v string, to string, sep string) any {
 	if to == "" {
 		to = _queryConditionString
