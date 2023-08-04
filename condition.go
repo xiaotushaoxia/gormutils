@@ -55,7 +55,14 @@ func WithCondition(cond any) func(*gorm.DB) *gorm.DB {
 				if argS, isStr := arg.(string); isStr {
 					arg = trySplitInString(argS, st[queryConditionSplit], st[queryConditionSep])
 				}
-				if k := reflect.ValueOf(arg).Kind(); !(k == reflect.Slice || k == reflect.Array) {
+				// 太长，拆开
+				//if !((field.Kind() == reflect.Slice || field.Kind() == reflect.Array) && field.Len() > 0) {
+				//	continue
+				//}
+				if !(field.Kind() == reflect.Slice || field.Kind() == reflect.Array) {
+					continue
+				}
+				if field.Len() == 0 {
 					continue
 				}
 			} else if isLikeOpr(st[queryConditionOpr]) {
@@ -69,7 +76,6 @@ func WithCondition(cond any) func(*gorm.DB) *gorm.DB {
 		}
 		return db
 	}
-
 }
 
 // trySplitInString 尝试把 1,2,3 分割成 [1,2,3], 看情况返回[]string或者[]int
