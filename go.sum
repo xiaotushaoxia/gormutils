@@ -4,8 +4,10 @@ github.com/jinzhu/inflection v1.0.0 h1:K317FqzuhWc8YvSVlFMCCUb36O/S9MCKRDI7QkRKD
 github.com/jinzhu/inflection v1.0.0/go.mod h1:h+uFLlag+Qp1Va5pdKtLDYj+kHp5pxUVkryuEj+Srlc=
 github.com/jinzhu/now v1.1.5 h1:/o9tlHleP7gOFmsnYNz3RGnqzefHA47wQpKrrdTIwXQ=
 github.com/jinzhu/now v1.1.5/go.mod h1:d3SSVoowX0Lcu0IBviAWJpolVfI5UJVZZ7cO71lE/z8=
-github.com/xiaotushaoxia/kvtag v0.0.0-20230707150233-866cc83dddbb h1:V2SY6wOnQHo+wL0EWnocQHMxrIF1ntO4MnquaHA1ZIY=
-github.com/xiaotushaoxia/kvtag v0.0.0-20230707150233-866cc83dddbb/go.mod h1:qDxQtrLM/XqGjiHN2u9oYC5HqJRGrDl+XvQvkT/6Ee4=
+github.com/pkg/errors v0.9.1 h1:FEBLx1zS214owpjy7qsBeixbURkuhQAwrK5UwLGTwt4=
+github.com/pkg/errors v0.9.1/go.mod h1:bwawxfHBFNV+L2hUp1rHADufV3IMtnDRdf1r5NINEl0=
+github.com/xiaotushaoxia/errx v0.0.0-20230402155036-d8f0b75a896f h1:UNJ+olDH+CzqxpM6arKxZ0hrkFMWPpBIg/ItlRCA1Xo=
+github.com/xiaotushaoxia/errx v0.0.0-20230402155036-d8f0b75a896f/go.mod h1:mJROG4ykVzq+0gBdFUywldtLKaiYB3b7JoXc0hKzaGo=
 github.com/xiaotushaoxia/kvtag v0.0.0-20230724060454-105fe283a74f h1:UcLgKA2tDiLkTBTvjyBJ8DIMFcRfPFuTlgITsspMjBI=
 github.com/xiaotushaoxia/kvtag v0.0.0-20230724060454-105fe283a74f/go.mod h1:qDxQtrLM/XqGjiHN2u9oYC5HqJRGrDl+XvQvkT/6Ee4=
 gorm.io/driver/mysql v1.5.1 h1:WUEH5VF9obL/lTtzjmML/5e6VfFR/788coz2uaVCAZw=
