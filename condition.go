@@ -16,10 +16,10 @@ const (
 
 	//"colum:user;opr:in;split:sting;sep:,"`
 	queryConditionColum   = "colum"
-	queryConditionOpr     = "opr"
+	queryConditionOpr     = "op"
 	queryConditionSplit   = "split"
 	queryConditionSep     = "sep"
-	queryConditionPattern = "pattern"
+	queryConditionPattern = "patten"
 
 	// pattern: 会把结构体的值替换pattern字符串中的?
 	// pattern:?%

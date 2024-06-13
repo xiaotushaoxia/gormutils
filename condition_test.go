@@ -12,7 +12,7 @@ type areaQueryBody struct {
 	nameIDQueryBody `cond:"embedded"`
 	//Name  string `cond:"colum:name;opr:like;pattern:%%?%%"`
 	//ID    []int  `cond:"colum:id;opr:in"`
-	Type  string `cond:"colum:type;opr:in;split:int;sep:,"`
+	Type  string `cond:"colum:type;op:in;split:int;sep:,"`
 	Start string `cond:"colum:created_at;opr:>"`
 	Desc  string `cond:"colum:desc;opr:in"` // split默认值string,sep默认值,
 }
@@ -27,7 +27,7 @@ type locationQueryBody struct {
 }
 
 type nameIDQueryBody struct {
-	Name string `cond:"colum:name;opr:like;pattern:%%?%%"`
+	Name string `cond:"colum:name;opr:like;patten:%%?%%"`
 	ID   []int  `cond:"colum:id;opr:in"`
 }
 
